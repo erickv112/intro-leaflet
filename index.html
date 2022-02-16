@@ -14,6 +14,16 @@ let myMap;
 let canvas;
 const mappa = new Mappa('Leaflet');
 
+let cities;
+
+let citiesLat;
+let citiesLng;
+let citiesPop;
+    
+function preload(){
+	cities = loadTable("city-population", "header","csv");
+}
+
 // Lets change the map tiles to something with more contrast
 const options = {
   lat: 49.26188,
@@ -35,9 +45,33 @@ function setup(){
 
   fill(70, 203,31); 
   stroke(100);
+  
+
+  console.log(cities)
+  
+  citiesLat = cities.getColumn("latitude")
+  citiesLng = cities.getColumn("longitude")
+  citiesPop = cities.getColumn("population")
+  
+  
+  noLoop();
+  
+  
+  
+  
 }
 
 function draw(){
+  
+    for(let i = 0; i < cities.getRowCount()-1; i++){
+    
+    let x = map(citiesLng[i], -180, 180, 0, width);
+    let y = map(citiesLat[i], -90, 90, height, 0);
+    let r = map(citiesPop[i], min(citiesPop), max(citiesPop), 1, 20)
+  	
+    ellipse(x, y, sqrt(r), sqrt(r));
+  }
+  
 }
 
 // Draw the meteorites
