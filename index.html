@@ -10,19 +10,16 @@
 
 <body>
   <script>
-    
 let myMap;
 let canvas;
 const mappa = new Mappa('Leaflet');
 
-}
-
 // Lets change the map tiles to something with more contrast
 const options = {
   lat: 49.26188,
-  lng: -123.24914,
-  zoom: 2,
-  style: "https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}"
+  lng: -123.24913,
+  zoom: 4,
+  style: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
 }
 
 function setup(){
@@ -35,13 +32,13 @@ function setup(){
 
   // Only redraw the meteorites when the map change and not every frame.
   myMap.onChange(drawMeteorites);
-  stroke(100);
 
-  
+  fill(70, 203,31); 
+  stroke(100);
 }
 
 function draw(){
-  }
+}
 
 // Draw the meteorites
 function drawMeteorites() {
@@ -64,12 +61,10 @@ function drawMeteorites() {
       // meteorite (https://en.wikipedia.org/wiki/Hoba_meteorite)
       let size = meteorites.getString(i, 'mass (g)');
       size = map(size, 558, 60000000, 1, 25) + myMap.zoom();
-      fill(255,0,0,127)
       ellipse(pos.x, pos.y, size, size);
     }
   }
-} 
-    
+}
   </script>
 </body>
 
