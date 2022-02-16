@@ -19,6 +19,8 @@ const options = {
   lat: 49.26188,
   lng: -123.24913,
   zoom: 3,
+  minZoom: 1,
+  maxZoom: 12,
   style: "https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}"
 }
 
@@ -38,7 +40,6 @@ function setup(){
 }
 
 function draw(){
-  L.control.scale().addTo(map);
 }
 
 // Draw the meteorites
@@ -63,6 +64,7 @@ function drawMeteorites() {
       let size = meteorites.getString(i, 'mass (g)');
       size = map(size, 558, 60000000, 1, 25) + myMap.zoom();
       ellipse(pos.x, pos.y, size, size);
+      L.control.scale().addTo(map);
     }
   }
 }
