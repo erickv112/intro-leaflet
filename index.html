@@ -38,6 +38,18 @@ function setup(){
 }
 
 function draw(){
+    stroke(0);
+    fill(255,0,0,63);
+    ellipse(190, 580, (1+myMap.zoom()));
+    fill(50);
+    text('528g Meteorite =', 71, 582);
+    fill(255,0,0,63)
+    ellipse(190, 610, (25+myMap.zoom()));
+    fill(50);
+    text('60,000,000g Meteorite =', 30, 612);
+  
+    fill(255,0,0,127); 
+    stroke(100)
 }
 
 // Draw the meteorites
